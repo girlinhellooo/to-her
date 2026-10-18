@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To. her.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+  
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  
+  <style>
+    :root {
+      --bg-color: #f7f7f6;
+      --card-bg: #ffffff;
+      --card-border: #e2e2e8;
+      
+      --accent-rose: #B20200;
+      --accent-rose-hover: #8f0200;
+      --accent-rose-light: rgba(178, 2, 0, 0.08);
+      
+      --text-main: #121214;
+      --text-sub: #66666e;
+      --text-muted: #8e8e96;
+      --input-bg: #fafafa;
+      
+      --font-serif: "Noto Serif KR", serif;
+      --font-sans: "Pretendard", -apple-system, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: var(--font-sans);
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px 16px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 500px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 40px 28px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 32px;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 24px;
+    }
+
+    .brand-title {
+      font-family: var(--font-serif);
+      font-size: 2.6rem;
+      font-weight: 300;
+      letter-spacing: 3px;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+
+    .brand-title span {
+      color: var(--accent-rose);
+      font-style: italic;
+    }
+
+    .brand-subtitle {
+      font-family: var(--font-serif);
+      font-size: 0.85rem;
+      color: var(--accent-rose);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .step {
+      display: none;
+      animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .step.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .intro-editorial {
+      background: #faf8f8;
+      border-left: 2px solid var(--accent-rose);
+      padding: 20px 18px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      line-height: 1.8;
+      color: #333338;
+      margin-bottom: 28px;
+      font-weight: 300;
+    }
+
+    .intro-editorial strong {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .intro-editorial hr {
+      border: none;
+      border-top: 1px solid rgba(178, 2, 0, 0.15);
+      margin: 16px 0;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: var(--text-main);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    label.field-label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+
+    .field-example {
+      font-size: 0.8rem;
+      color: var(--text-sub);
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 14px;
+      background: var(--input-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      color: var(--text-main);
+      font-size: 0.92rem;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    input[type="text"]:focus, textarea:focus {
+      border-color: var(--accent-rose);
+      background: #ffffff;
+      box-shadow: 0 0 0 3px var(--accent-rose-light);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    .radio-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      background: var(--input-bg);
+      transition: all 0.2s;
+      font-size: 0.9rem;
+    }
+
+    .radio-card:hover {
+      border-color: var(--accent-rose);
+      background: #ffffff;
+    }
+
+    .radio-card input[type="radio"] {
+      accent-color: var(--accent-rose);
+    }
+
+    .slider-container {
+      background: var(--input-bg);
+      border: 1px solid var(--card-border);
+      padding: 18px 16px;
+      border-radius: 8px;
+    }
+
+    .slider-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.88rem;
+      color: var(--accent-rose);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 6px;
+      background: #e2e2e8;
+      border-radius: 3px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--accent-rose);
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(178, 2, 0, 0.3);
+      transition: transform 0.1s ease;
+    }
+
+    input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.15);
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--accent-rose);
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(178, 2, 0, 0.3);
+    }
+
+    .slider-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 15px;
+      border-radius: 8px;
+      border: none;
+      background: var(--accent-rose);
+      color: #ffffff;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .btn:hover {
+      background: var(--accent-rose-hover);
+      box-shadow: 0 4px 12px rgba(178, 2, 0, 0.2);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--card-border);
+      color: var(--text-sub);
+    }
+
+    .btn-secondary:hover {
+      background: #f0f0f2;
+      color: var(--text-main);
+    }
+
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .profile-card-preview {
+      background: #ffffff;
+      color: #121214;
+      border: 1px solid #e8d5d5;
+      border-radius: 16px;
+      padding: 24px 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(178, 2, 0, 0.05);
+      font-family: var(--font-sans);
+      width: 100%;
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(178, 2, 0, 0.2);
+      padding-bottom: 12px;
+      margin-bottom: 14px;
+    }
+
+    .card-brand {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      color: #B20200;
+      letter-spacing: 1px;
+    }
+
+    .card-category-tag {
+      background: rgba(178, 2, 0, 0.08);
+      color: #B20200;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      border: 1px solid rgba(178, 2, 0, 0.2);
+    }
+
+    .card-greeting-quote {
+      font-family: var(--font-serif);
+      font-size: 0.98rem;
+      color: #121214;
+      line-height: 1.4;
+      margin-bottom: 16px;
+      padding: 10px 12px;
+      background: #faf6f6;
+      border-left: 3px solid #B20200;
+      border-radius: 0 6px 6px 0;
+    }
+
+    .card-info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 0.85rem;
+      color: #55555c;
+      background: #ffffff;
+      padding: 4px 0;
+      margin-bottom: 16px;
+    }
+
+    .card-info-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 8px;
+      border-bottom: 1px dashed rgba(178, 2, 0, 0.2);
+    }
+
+    .card-info-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .card-info-label {
+      color: #B20200;
+      font-weight: 500;
+      font-size: 0.82rem;
+    }
+
+    .card-info-value {
+      color: #121214;
+      font-weight: 600;
+      text-align: right;
+      font-size: 0.85rem;
+    }
+
+    .card-body-gauge-box {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      width: 130px;
+    }
+
+    .card-body-label-min, .card-body-label-max {
+      font-size: 0.68rem;
+      color: #8e8e96;
+      font-weight: 500;
+    }
+
+    .card-body-gauge-bar {
+      flex: 1;
+      height: 6px;
+      background: #e2e2e8;
+      border-radius: 3px;
+      position: relative;
+    }
+
+    .card-body-gauge-fill {
+      height: 100%;
+      background: #B20200;
+      border-radius: 3px;
+      width: 50%;
+    }
+
+    .card-body-gauge-dot {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 10px;
+      height: 10px;
+      background: #B20200;
+      border: 2px solid #ffffff;
+      border-radius: 50%;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    }
+
+    .card-keywords {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 16px;
+    }
+
+    .card-keyword-tag {
+      background: #fdf5f5;
+      color: #B20200;
+      font-size: 0.72rem;
+      padding: 4px 9px;
+      border-radius: 6px;
+      border: 1px solid rgba(178, 2, 0, 0.15);
+    }
+
+    .card-section-box {
+      background: #faf8f8;
+      border: 1px solid #f5eded;
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin-bottom: 12px;
+      font-size: 0.82rem;
+      line-height: 1.5;
+      color: #2b2b30;
+    }
+
+    .card-section-title {
+      font-size: 0.7rem;
+      color: #B20200;
+      margin-bottom: 4px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .card-footer {
+      text-align: right;
+      font-size: 0.7rem;
+      color: #8e8e96;
+      margin-top: 14px;
+      font-family: var(--font-serif);
+      border-top: 1px solid rgba(178, 2, 0, 0.15);
+      padding-top: 8px;
+    }
+
+    .notice-box {
+      background: #faf6f6;
+      border: 1px solid #f2e2e2;
+      border-radius: 12px;
+      padding: 18px 16px;
+      margin-top: 20px;
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: #333338;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <div class="brand-title">To. <span>her.</span></div>
+    <div class="brand-subtitle">Girl in hell</div>
+  </div>
+
+  <form id="toHerForm">
+    <input type="hidden" id="orientationText" name="orientationText" value="온텍 ~ 플라토닉 사이">
+    <input type="hidden" id="ageText" name="ageText" value="20대 중후반">
+    <input type="hidden" id="heightText" name="heightText" value="160cm ~ 165cm 사이">
+    <input type="hidden" id="bodyText" name="bodyText" value="보통">
+    <input type="hidden" id="hairText" name="hairText" value="중단발">
+    <input type="hidden" id="outingText" name="outingText" value="친한 친구 몇 명">
+    <input type="hidden" id="regionText" name="regionText" value="서울 (강남/홍대 등)">
+
+    <!-- Step 1: intro -->
+    <div class="step active" id="step-1">
+      <div class="intro-editorial">
+        안녕하세요. <strong>걸인헬 (Girl in hell)</strong>입니다.<br><br>
+        저희는 다른 커플들처럼 평범한 일상을 나누며 사랑하고 있는 여성 성소수자 두 사람입니다.<br><br>
+        언젠가 우리와 같은 사람들이 아무런 망설임 없이 편안한 마음으로 마주할 수 있는 커뮤니티를 꿈꾸고 있습니다. 그 커다란 꿈을 향해, 작지만 소중한 프로젝트들로 여러분을 하나씩 찾아뵙고자 합니다.<br><br>
+        그 첫 번째 이야기, 사람과 사람의 마음을 잇는 <strong>To. her.</strong><br>
+        지금 이곳에서, 트위터에 딱 맞는 프로필 카드를 만들어보세요.
+        
+        <hr>
+        
+        <span style="color: var(--accent-rose); font-weight: 500; display: block; margin-bottom: 4px;">💡 이용 방법 및 트위터 공유 팁</span>
+        1. 아래 문항을 작성하고 감성 프로필 카드를 다운로드하세요.<br>
+        2. 트위터(X)에 카드를 올리실 때 <strong>#투헐</strong> 해시태그를 꼭 붙여주세요!<br>
+        3. <strong>걸인헬</strong> 계정이 찾아가 기쁜 마음으로 알티(RT) 및 공유를 해드릴게요.
+      </div>
+      
+      <div class="section-title">당신은 여성 성소수자이신가요?</div>
+      
+      <div class="btn-group">
+        <button type="button" class="btn" onclick="nextStep(2)">네, 그렇습니다</button>
+        <button type="button" class="btn btn-secondary" onclick="rejectUser()">아닙니다</button>
+      </div>
+    </div>
+
+    <!-- Step 2: 카테고리 선택 -->
+    <div class="step" id="step-2">
+      <div class="section-title">어떤 인연을 만나고 싶으신가요?</div>
+      
+      <div class="form-group">
+        <label class="radio-card">
+          <input type="radio" name="category" value="연인" checked onchange="toggleCategoryFields()">
+          <span>연인 (Romance)</span>
+        </label>
+        <label class="radio-card">
+          <input type="radio" name="category" value="친구" onchange="toggleCategoryFields()">
+          <span>친구 (Friendship)</span>
+        </label>
+        <label class="radio-card">
+          <input type="radio" name="category" value="모임/단체채팅" onchange="toggleCategoryFields()">
+          <span>모임 / 단체 채팅방 (Community)</span>
+        </label>
+      </div>
+      
+      <button type="button" class="btn" onclick="nextStep(3)">다음으로</button>
+    </div>
+
+    <!-- Step 3: 정보 입력 -->
+    <div class="step" id="step-3">
+      <div class="form-group romance-only-field">
+        <label class="field-label">성향 스펙트럼</label>
+        <div class="field-example">예시: 본인의 성향 스펙트럼 위치를 부드럽게 조절해 주세요.</div>
+        <div class="slider-container" id="orientationSliderBox">
+          <div class="slider-header">
+            <span>교류/스킨십 성향</span>
+            <span id="orientationValDisplay">온텍 ~ 플라토닉 사이</span>
+          </div>
+          <input type="range" id="orientationRange" min="1" max="4" step="0.01" value="2.5" oninput="updateOrientationText(this.value)">
+          <div class="slider-labels">
+            <span>온깁</span>
+            <span>깁텍</span>
+            <span>온텍</span>
+            <span>플라토닉</span>
+          </div>
+        </div>
+        <div class="checkbox-group" style="display:flex; align-items:center; gap:8px; font-size:0.85rem; color:var(--text-sub); margin-top:10px;">
+          <input type="checkbox" id="orientationPrivate" name="orientationPrivate" onchange="toggleOrientationPrivate(this)" style="accent-color:var(--accent-rose);">
+          <label for="orientationPrivate">비공개 또는 상관 없음</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="field-label" id="nicknameLabel" for="nickname">닉네임</label>
+        <div class="field-example" id="nicknameExample">예시: 새벽, 루다, 여름</div>
+        <input type="text" id="nickname" name="nickname" placeholder="사용하실 닉네임을 입력해 주세요" required>
+      </div>
+
+      <div class="form-group" id="ageGroupContainer">
+        <label class="field-label" id="ageLabel">연령대 (나이)</label>
+        <div class="field-example" id="ageExample">예시: 슬라이더를 스크롤하여 본인의 연령대를 선택해 주세요.</div>
+        
+        <div class="slider-container" id="ageSliderContainer">
+          <div class="slider-header">
+            <span id="ageSliderTitle">연령대</span>
+            <span id="ageValDisplay">20대 중후반</span>
+          </div>
+          <input type="range" id="ageRange" min="1" max="6" step="0.01" value="3" oninput="updateAgeText(this.value)">
+          <div class="slider-labels">
+            <span>18세이하</span>
+            <span>20대초</span>
+            <span>20대중후반</span>
+            <span>30대초</span>
+            <span>30대중후반</span>
+            <span>40대이상</span>
+          </div>
+        </div>
+
+        <input type="text" id="ageDirectInput" name="ageDirectInput" placeholder="예: 20대 후반 ~ 30대 / 제한 없음" style="display: none; margin-top: 4px;">
+      </div>
+
+      <div class="form-group romance-only-field">
+        <label class="field-label">키 (신장)</label>
+        <div class="field-example">예시: 본인의 대략적인 키를 슬라이더로 조절해 주세요.</div>
+        <div class="slider-container">
+          <div class="slider-header">
+            <span>신장</span>
+            <span id="heightValDisplay">160cm ~ 165cm 사이</span>
+          </div>
+          <input type="range" id="heightRange" min="1" max="5" step="0.01" value="3" oninput="updateHeightText(this.value)">
+          <div class="slider-labels">
+            <span>150이하</span>
+            <span>155전후</span>
+            <span>162전후</span>
+            <span>170전후</span>
+            <span>175이상</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group romance-only-field">
+        <label class="field-label">체형</label>
+        <div class="field-example">예시: 슬라이더를 통해 본인의 체형 스펙트럼을 편하게 선택해 주세요.</div>
+        <div class="slider-container">
+          <div class="slider-header">
+            <span>체형</span>
+            <span id="bodyValDisplay">보통</span>
+          </div>
+          <input type="range" id="bodyRange" min="1" max="3" step="0.01" value="2" oninput="updateBodyText(this.value)">
+          <div class="slider-labels" style="justify-content: space-between; padding: 0 4px;">
+            <span>마름</span>
+            <span>보통</span>
+            <span>통통</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group romance-only-field">
+        <label class="field-label">머리 스타일 (외형)</label>
+        <div class="field-example">예시: 슬라이더를 스크롤하여 머리 길이를 표현해 주세요.</div>
+        <div class="slider-container">
+          <div class="slider-header">
+            <span>머리 길이</span>
+            <span id="hairValDisplay">중단발</span>
+          </div>
+          <input type="range" id="hairRange" min="1" max="5" step="0.01" value="3" oninput="updateHairText(this.value)">
+          <div class="slider-labels">
+            <span>숏컷</span>
+            <span>숏단발</span>
+            <span>중단발</span>
+            <span>세미롱</span>
+            <span>장발</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group" id="outingGroupContainer">
+        <label class="field-label">커밍아웃 바운더리</label>
+        <div class="field-example">예시: 현재 생활 영역에서의 커밍아웃 정도를 조절해 주세요.</div>
+        <div class="slider-container" id="outingSliderBox">
+          <div class="slider-header">
+            <span>공개 범위</span>
+            <span id="outingValDisplay">친한 친구 몇 명</span>
+          </div>
+          <input type="range" id="outingRange" min="1" max="6" step="0.01" value="3" oninput="updateOutingText(this.value)">
+          <div class="slider-labels" style="font-size: 0.65rem;">
+            <span>비공개</span>
+            <span>퀴어지인</span>
+            <span>친한친구</span>
+            <span>주요지인</span>
+            <span>완전오픈</span>
+            <span>상관없음</span>
+          </div>
+        </div>
+        <div class="checkbox-group" style="display:flex; align-items:center; gap:8px; font-size:0.85rem; color:var(--text-sub); margin-top:10px;">
+          <input type="checkbox" id="outingPrivate" name="outingPrivate" onchange="toggleOutingPrivate(this)" style="accent-color:var(--accent-rose);">
+          <label for="outingPrivate">상관 없음 (직접 선택)</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="field-label" id="regionLabel">활동 중인 지역</label>
+        <div class="field-example" id="regionExample">예시: 주로 활동하시는 주 거주 지역을 선택해 주세요.</div>
+        <div class="slider-container" id="regionSliderContainer">
+          <div class="slider-header">
+            <span>활동 권역</span>
+            <span id="regionValDisplay">서울 (강남/홍대 등)</span>
+          </div>
+          <input type="range" id="regionRange" min="1" max="7" step="0.01" value="1" oninput="updateRegionText(this.value)">
+          <div class="slider-labels">
+            <span>서울</span>
+            <span>인천/경기</span>
+            <span>부산/경남</span>
+            <span>대구/경북</span>
+            <span>대전/충청</span>
+            <span>광주/전라</span>
+            <span>강원/제주</span>
+          </div>
+        </div>
+        <div class="checkbox-group" style="display:flex; align-items:center; gap:8px; font-size:0.85rem; color:var(--text-sub); margin-top:10px;">
+          <input type="checkbox" id="regionDirectCheck" name="regionDirectCheck" onchange="toggleRegionDirect(this)" style="accent-color:var(--accent-rose);">
+          <label for="regionDirectCheck">지역 직접 입력하기</label>
+        </div>
+        <input type="text" id="regionDirectInput" name="regionDirectInput" placeholder="예: 서울 마포구 / 온라인 전체" style="display: none; margin-top: 8px;">
+      </div>
+
+      <div class="form-group">
+        <label class="field-label" id="keywordLabel" for="selectedKeywords">나를 표현하는 키워드 (직접 입력)</label>
+        <div class="field-example" id="keywordExample">
+          자신을 잘 설명하는 키워드를 3~5개 정도 직접 입력해 주세요. (쉼표 또는 띄어쓰기로 구분)<br>
+          <strong>예시: #집순이, #디저트러버, #내향인, #산책좋아, #비흡연</strong>
+        </div>
+        <input type="text" id="selectedKeywords" name="selectedKeywords" placeholder="예: 집순이, 디저트러버, 내향인, 산책좋아, 비흡연" required>
+      </div>
+
+      <div class="form-group">
+        <label class="field-label" id="selfIntroLabel" for="selfIntro">나에 대한 상세 소개</label>
+        <div class="field-example" id="selfIntroExample">예시: 잔잔한 음악과 조용한 카페를 좋아해요. 주말에는 집에서 영화를 보거나 산책하는 소소한 일상을 즐깁니다.</div>
+        <textarea id="selfIntro" name="selfIntro" placeholder="자신의 성향, 취향, 일상 등을 편안하게 적어주세요." required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label class="field-label" id="targetIntroLabel" for="targetIntro">원하는 상대의 조건</label>
+        <div class="field-example" id="targetIntroExample">예시: 대화가 잘 통하고 따뜻한 눈빛을 가진 분, 비흡연자이시며 주말에 같이 전시회 다닐 수 있는 분이면 좋겠어요.</div>
+        <textarea id="targetIntro" name="targetIntro" placeholder="원하는 상대의 분위기, 성향, 연령대 등을 적어주세요." required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label class="field-label" for="greeting">카드 게시용 첫 줄 인사말</label>
+        <div class="field-example">예시: "올겨울, 서로의 온기가 되어줄 다정한 사람을 기다려요."</div>
+        <input type="text" id="greeting" name="greeting" placeholder="이미지 카드 메인에 실릴 인사를 작성해 주세요" required>
+      </div>
+
+      <button type="button" class="btn" onclick="renderCardAndGoStep4()">프로필 카드 생성하기</button>
+    </div>
+
+    <!-- Step 4: 프로필 카드 미리보기 & 저장 -->
+    <div class="step" id="step-4">
+      <div class="section-title">당신의 To. her. 프로필 카드</div>
+      
+      <div class="profile-card-preview" id="profileCardTarget">
+        <div class="card-top">
+          <div class="card-brand">To. her.</div>
+          <div class="card-category-tag" id="cTag">연인</div>
+        </div>
+        
+        <div class="card-greeting-quote" id="cGreet">"첫 줄 인사말"</div>
+
+        <div class="card-info-list">
+          <div class="card-info-row">
+            <span class="card-info-label" id="cNickLabel">닉네임</span>
+            <span class="card-info-value" id="cNickname">새벽</span>
+          </div>
+          <div class="card-info-row" id="cAgeRow">
+            <span class="card-info-label" id="cAgeLabel">연령대</span>
+            <span class="card-info-value" id="cAge">20대 중후반</span>
+          </div>
+          <div class="card-info-row" id="cOrientRow">
+            <span class="card-info-label">성향 스펙트럼</span>
+            <span class="card-info-value" id="cOrient">온텍 ~ 플라토닉 사이</span>
+          </div>
+          <div class="card-info-row" id="cHeightRow">
+            <span class="card-info-label">키 (신장)</span>
+            <span class="card-info-value" id="cHeight">160cm ~ 165cm</span>
+          </div>
+          
+          <div class="card-info-row" id="cBodyRow">
+            <span class="card-info-label">체형</span>
+            <div class="card-body-gauge-box">
+              <span class="card-body-label-min">마름</span>
+              <div class="card-body-gauge-bar">
+                <div class="card-body-gauge-fill" id="cBodyFill"></div>
+                <div class="card-body-gauge-dot" id="cBodyDot"></div>
+              </div>
+              <span class="card-body-label-max">통통</span>
+            </div>
+          </div>
+
+          <div class="card-info-row" id="cHairRow">
+            <span class="card-info-label">머리 스타일</span>
+            <span class="card-info-value" id="cHair">중단발</span>
+          </div>
+          <div class="card-info-row">
+            <span class="card-info-label" id="cRegionLabel">활동 지역</span>
+            <span class="card-info-value" id="cRegion">서울</span>
+          </div>
+          <div class="card-info-row" id="cOutingRow">
+            <span class="card-info-label">커밍아웃 범위</span>
+            <span class="card-info-value" id="cOuting">친한 친구 몇 명</span>
+          </div>
+        </div>
+
+        <div class="card-keywords" id="cKeywords"></div>
+
+        <div class="card-section-box">
+          <div class="card-section-title" id="cSelfTitle">ABOUT ME</div>
+          <div id="cSelfIntro" style="word-break: break-all;">나에 대한 소개 예시 내용입니다.</div>
+        </div>
+
+        <div class="card-section-box">
+          <div class="card-section-title" id="cTargetTitle">TO MY HER</div>
+          <div id="cTargetIntro" style="word-break: break-all;">원하는 상대의 조건 예시 내용입니다.</div>
+        </div>
+
+        <div class="card-footer">Girl in hell — To. her.</div>
+      </div>
+
+      <button type="button" class="btn" onclick="downloadCardImage()">📷 가로형 카드 이미지 저장하기</button>
+
+      <div class="notice-box">
+        <strong style="color: var(--accent-rose); display: block; margin-bottom: 6px;">💌 트위터(X) 공유 안내</strong>
+        1. 위의 <strong>[가로형 카드 이미지 저장하기]</strong> 버튼을 눌러 이미지를 간직해 주세요.<br>
+        2. 트위터에 이미지를 업로드하실 때 <strong>#투헐</strong> 해시태그를 함께 올려주세요.<br>
+        3. <strong>걸인헬</strong> 계정이 찾아가 기쁜 마음으로 알티(RT) 및 공유를 해드릴게요!
+      </div>
+    </div>
+  </form>
+</div>
+
+<script>
+  function updateSliderFill(slider) {
+    const min = parseFloat(slider.min);
+    const max = parseFloat(slider.max);
+    const val = parseFloat(slider.value);
+    const percentage = ((val - min) / (max - min)) * 100;
+    slider.style.background = `linear-gradient(to right, #B20200 0%, #B20200 ${percentage}%, #e2e2e8 ${percentage}%, #e2e2e8 100%)`;
+  }
+
+  function getContinuousText(val, labels) {
+    const num = parseFloat(val);
+    const index = Math.floor(num);
+    const decimal = num - index;
+
+    if (num <= 1) return labels[0];
+    if (num >= labels.length) return labels[labels.length - 1];
+
+    if (decimal < 0.25) {
+      return labels[index - 1];
+    } else if (decimal > 0.75) {
+      return labels[index];
+    } else {
+      return labels[index - 1] + " ~ " + labels[index] + " 사이";
+    }
+  }
+
+  const orientationLabels = ["온깁", "깁텍", "온텍", "플라토닉"];
+  function updateOrientationText(val) {
+    const txt = getContinuousText(val, orientationLabels);
+    document.getElementById('orientationValDisplay').innerText = txt;
+    document.getElementById('orientationText').value = txt;
+    updateSliderFill(document.getElementById('orientationRange'));
+  }
+
+  function toggleOrientationPrivate(checkbox) {
+    const box = document.getElementById('orientationSliderBox');
+    if (checkbox.checked) {
+      box.style.opacity = '0.4';
+      box.style.pointerEvents = 'none';
+      document.getElementById('orientationValDisplay').innerText = "비공개 또는 상관 없음";
+    } else {
+      box.style.opacity = '1';
+      box.style.pointerEvents = 'auto';
+      updateOrientationText(document.getElementById('orientationRange').value);
+    }
+  }
+
+  const ageLabels = ["18세 이하", "20대 초반", "20대 중후반", "30대 초반", "30대 중후반", "40대 이상"];
+  function updateAgeText(val) {
+    const txt = getContinuousText(val, ageLabels);
+    document.getElementById('ageValDisplay').innerText = txt;
+    document.getElementById('ageText').value = txt;
+    updateSliderFill(document.getElementById('ageRange'));
+  }
+
+  const heightLabels = ["150cm 이하", "155cm 전후", "162cm 전후", "170cm 전후", "175cm 이상"];
+  function updateHeightText(val) {
+    const txt = getContinuousText(val, heightLabels);
+    document.getElementById('heightValDisplay').innerText = txt;
+    document.getElementById('heightText').value = txt;
+    updateSliderFill(document.getElementById('heightRange'));
+  }
+
+  const bodyLabels = ["마름", "보통", "통통"];
+  function updateBodyText(val) {
+    const txt = getContinuousText(val, bodyLabels);
+    document.getElementById('bodyValDisplay').innerText = txt;
+    document.getElementById('bodyText').value = txt;
+    updateSliderFill(document.getElementById('bodyRange'));
+  }
+
+  const hairLabels = ["숏컷", "숏단발", "중단발", "세미롱", "장발"];
+  function updateHairText(val) {
+    const txt = getContinuousText(val, hairLabels);
+    document.getElementById('hairValDisplay').innerText = txt;
+    document.getElementById('hairText').value = txt;
+    updateSliderFill(document.getElementById('hairRange'));
+  }
+
+  const outingLabels = ["비공개", "소수 퀴어 지인만", "친한 친구 몇 명", "주요 지인", "완전 오픈", "상관 없음"];
+  function updateOutingText(val) {
+    const txt = getContinuousText(val, outingLabels);
+    document.getElementById('outingValDisplay').innerText = txt;
+    document.getElementById('outingText').value = txt;
+    updateSliderFill(document.getElementById('outingRange'));
+  }
+
+  function toggleOutingPrivate(checkbox) {
+    const box = document.getElementById('outingSliderBox');
+    if (checkbox.checked) {
+      box.style.opacity = '0.4';
+      box.style.pointerEvents = 'none';
+      document.getElementById('outingValDisplay').innerText = "상관 없음";
+    } else {
+      box.style.opacity = '1';
+      box.style.pointerEvents = 'auto';
+      updateOutingText(document.getElementById('outingRange').value);
+    }
+  }
+
+  const regionLabels = ["서울", "인천/경기", "부산/경남", "대구/경북", "대전/충청", "광주/전라", "강원/제주"];
+  function updateRegionText(val) {
+    const txt = getContinuousText(val, regionLabels);
+    document.getElementById('regionValDisplay').innerText = txt;
+    document.getElementById('regionText').value = txt;
+    updateSliderFill(document.getElementById('regionRange'));
+  }
+
+  function toggleRegionDirect(checkbox) {
+    const container = document.getElementById('regionSliderContainer');
+    const input = document.getElementById('regionDirectInput');
+    if (checkbox.checked) {
+      container.style.opacity = '0.4';
+      container.style.pointerEvents = 'none';
+      input.style.display = 'block';
+      input.focus();
+    } else {
+      container.style.opacity = '1';
+      container.style.pointerEvents = 'auto';
+      input.style.display = 'none';
+      updateRegionText(document.getElementById('regionRange').value);
+    }
+  }
+
+  function nextStep(stepNumber) {
+    document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
+    document.getElementById('step-' + stepNumber).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function rejectUser() {
+    alert("죄송합니다. 'To. her.'는 여성 성소수자분들을 위한 소중한 전용 공간입니다.");
+  }
+
+  function toggleCategoryFields() {
+    const category = document.querySelector('input[name="category"]:checked').value;
+    const romanceElements = document.querySelectorAll('.romance-only-field');
+    
+    romanceElements.forEach(el => {
+      el.style.display = (category === '연인') ? 'block' : 'none';
+    });
+
+    const nickLabel = document.getElementById('nicknameLabel');
+    const nickExample = document.getElementById('nicknameExample');
+    const nickInput = document.getElementById('nickname');
+    
+    const ageLabel = document.getElementById('ageLabel');
+    const ageExample = document.getElementById('ageExample');
+    const ageSliderContainer = document.getElementById('ageSliderContainer');
+    const ageDirectInput = document.getElementById('ageDirectInput');
+    const cAgeRow = document.getElementById('cAgeRow');
+
+    const keywordLabel = document.getElementById('keywordLabel');
+    const keywordExample = document.getElementById('keywordExample');
+    const keywordInput = document.getElementById('selectedKeywords');
+
+    const selfIntroLabel = document.getElementById('selfIntroLabel');
+    const selfIntroExample = document.getElementById('selfIntroExample');
+    const selfIntroInput = document.getElementById('selfIntro');
+    const cSelfTitle = document.getElementById('cSelfTitle');
+
+    const targetIntroLabel = document.getElementById('targetIntroLabel');
+    const targetIntroExample = document.getElementById('targetIntroExample');
+    const targetIntroInput = document.getElementById('targetIntro');
+    const cTargetTitle = document.getElementById('cTargetTitle');
+
+    const outingGroupContainer = document.getElementById('outingGroupContainer');
+    const cOutingRow = document.getElementById('cOutingRow');
+
+    if (category === '모임/단체채팅') {
+      nickLabel.innerText = "모임명";
+      nickExample.innerText = "예시: 주말 영화 소모임, 퀴어 보드게임 클럽";
+      nickInput.placeholder = "개설하신 모임명을 입력해 주세요";
+
+      ageLabel.innerText = "참여 연령대 (제한)";
+      ageExample.innerText = "예시: 모임의 참여 연령대 범위를 직접 적어주세요.";
+      ageSliderContainer.style.display = 'none';
+      ageDirectInput.style.display = 'block';
+      if(cAgeRow) cAgeRow.style.display = 'flex';
+
+      keywordLabel.innerText = "우리 모임을 표현하는 키워드 (직접 입력)";
+      keywordExample.innerHTML = "모임을 잘 설명하는 키워드를 3~5개 정도 직접 입력해 주세요. (쉼표 또는 띄어쓰기로 구분)<br><strong>예시: #영화감상, #보드게임, #친목위주, #주말활동</strong>";
+      keywordInput.placeholder = "예: 영화감상, 보드게임, 친목위주, 주말활동";
+
+      selfIntroLabel.innerText = "우리 모임에 대한 상세 소개";
+      selfIntroExample.innerText = "예시: 매주 주말마다 모여 함께 영화를 보고 이야기를 나누는 따뜻한 소모임입니다.";
+      selfIntroInput.placeholder = "모임의 취지, 활동 방식, 분위기 등을 편안하게 적어주세요.";
+
+      targetIntroLabel.innerText = "원하는 모임원의 조건";
+      targetIntroExample.innerText = "예시: 영화와 대화를 좋아하시는 분, 매너를 지키며 활발하게 참여해주실 분 환영해요.";
+      targetIntroInput.placeholder = "함께하고 싶은 모임원의 성향이나 참여 조건을 적어주세요.";
+
+      cSelfTitle.innerText = "ABOUT GROUP";
+      cTargetTitle.innerText = "TO MY MEMBERS";
+      if(outingGroupContainer) outingGroupContainer.style.display = 'none';
+      if(cOutingRow) cOutingRow.style.display = 'none';
+    } else {
+      nickLabel.innerText = "닉네임";
+      nickExample.innerText = "예시: 새벽, 루다, 여름";
+      nickInput.placeholder = "사용하실 닉네임을 입력해 주세요";
+
+      ageLabel.innerText = "연령대 (나이)";
+      ageExample.innerText = "예시: 슬라이더를 스크롤하여 본인의 연령대를 선택해 주세요.";
+      ageSliderContainer.style.display = 'block';
+      ageDirectInput.style.display = 'none';
+      if(cAgeRow) cAgeRow.style.display = 'flex';
+
+      keywordLabel.innerText = "나를 표현하는 키워드 (직접 입력)";
+      keywordExample.innerHTML = "자신을 잘 설명하는 키워드를 3~5개 정도 직접 입력해 주세요. (쉼표 또는 띄어쓰기로 구분)<br><strong>예시: #집순이, #디저트러버, #내향인, #산책좋아, #비흡연</strong>";
+      keywordInput.placeholder = "예: 집순이, 디저트러버, 내향인, 산책좋아, 비흡연";
+
+      selfIntroLabel.innerText = "나에 대한 상세 소개";
+      selfIntroExample.innerText = "예시: 잔잔한 음악과 조용한 카페를 좋아해요. 주말에는 집에서 영화를 보거나 산책하는 소소한 일상을 즐깁니다.";
+      selfIntroInput.placeholder = "자신의 성향, 취향, 일상 등을 편안하게 적어주세요.";
+
+      targetIntroLabel.innerText = "원하는 상대의 조건";
+      targetIntroExample.innerText = "예시: 대화가 잘 통하고 따뜻한 눈빛을 가진 분, 비흡연자이시며 주말에 같이 전시회 다닐 수 있는 분이면 좋겠어요.";
+      targetIntroInput.placeholder = "원하는 상대의 분위기, 성향, 연령대 등을 적어주세요.";
+
+      cSelfTitle.innerText = "ABOUT ME";
+      cTargetTitle.innerText = "TO MY HER";
+      if(outingGroupContainer) outingGroupContainer.style.display = 'block';
+      if(cOutingRow) cOutingRow.style.display = 'flex';
+    }
+  }
+
+  function renderCardAndGoStep4() {
+    const nickname = document.getElementById('nickname').value.trim();
+    const rawKeywords = document.getElementById('selectedKeywords').value.trim();
+    const selfIntro = document.getElementById('selfIntro').value.trim();
+    const targetIntro = document.getElementById('targetIntro').value.trim();
+    const greeting = document.getElementById('greeting').value.trim();
+
+    if (!nickname || !rawKeywords || !selfIntro || !targetIntro || !greeting) {
+      alert("모든 필수 입력 문항을 작성해 주세요.");
+      return;
+    }
+
+    const category = document.querySelector('input[name="category"]:checked').value;
+    document.getElementById('cTag').innerText = category;
+    document.getElementById('cGreet').innerText = `"${greeting}"`;
+    
+    document.getElementById('cNickLabel').innerText = (category === '모임/단체채팅') ? '모임명' : '닉네임';
+    document.getElementById('cNickname').innerText = nickname;
+
+    if (category === '모임/단체채팅') {
+      const ageDirect = document.getElementById('ageDirectInput').value.trim();
+      document.getElementById('cAge').innerText = ageDirect ? ageDirect : "제한 없음";
+    } else {
+      document.getElementById('cAge').innerText = document.getElementById('ageText').value;
+    }
+
+    const isRegionDirect = document.getElementById('regionDirectCheck').checked;
+    const regionVal = isRegionDirect ? document.getElementById('regionDirectInput').value.trim() : document.getElementById('regionText').value;
+    document.getElementById('cRegion').innerText = regionVal ? regionVal : "서울";
+    document.getElementById('cRegionLabel').innerText = "활동 지역";
+
+    const isOutingPrivate = document.getElementById('outingPrivate').checked;
+    document.getElementById('cOuting').innerText = isOutingPrivate ? '상관 없음' : document.getElementById('outingText').value;
+    
+    if (category === '연인') {
+      document.getElementById('cOrientRow').style.display = 'flex';
+      document.getElementById('cHeightRow').style.display = 'flex';
+      document.getElementById('cBodyRow').style.display = 'flex';
+      document.getElementById('cHairRow').style.display = 'flex';
+      document.getElementById('cAgeRow').style.display = 'flex';
+      document.getElementById('cOutingRow').style.display = 'flex';
+      
+      document.getElementById('cOrient').innerText = document.getElementById('orientationPrivate').checked ? '비공개' : document.getElementById('orientationText').value;
+      document.getElementById('cHeight').innerText = document.getElementById('heightText').value;
+      document.getElementById('cHair').innerText = document.getElementById('hairText').value;
+
+      const bodyVal = parseFloat(document.getElementById('bodyRange').value);
+      const bodyPercent = ((bodyVal - 1) / (3 - 1)) * 100;
+      document.getElementById('cBodyFill').style.width = bodyPercent + '%';
+      document.getElementById('cBodyDot').style.left = bodyPercent + '%';
+    } else if (category === '친구') {
+      document.getElementById('cOrientRow').style.display = 'none';
+      document.getElementById('cHeightRow').style.display = 'none';
+      document.getElementById('cBodyRow').style.display = 'none';
+      document.getElementById('cHairRow').style.display = 'none';
+      document.getElementById('cAgeRow').style.display = 'flex';
+      document.getElementById('cOutingRow').style.display = 'flex';
+    } else {
+      document.getElementById('cOrientRow').style.display = 'none';
+      document.getElementById('cHeightRow').style.display = 'none';
+      document.getElementById('cBodyRow').style.display = 'none';
+      document.getElementById('cHairRow').style.display = 'none';
+      document.getElementById('cAgeRow').style.display = 'flex';
+      document.getElementById('cOutingRow').style.display = 'none';
+    }
+
+    const keywordContainer = document.getElementById('cKeywords');
+    keywordContainer.innerHTML = '';
+    
+    const keywordsArray = rawKeywords.split(/[,,\s]+/).filter(k => k.trim().length > 0);
+    keywordsArray.forEach(kw => {
+      let cleanKw = kw.trim();
+      if (!cleanKw.startsWith('#')) {
+        cleanKw = '#' + cleanKw;
+      }
+      const tag = document.createElement('span');
+      tag.className = 'card-keyword-tag';
+      tag.innerText = cleanKw;
+      keywordContainer.appendChild(tag);
+    });
+
+    document.getElementById('cSelfIntro').innerText = selfIntro;
+    document.getElementById('cTargetIntro').innerText = targetIntro;
+
+    nextStep(4);
+  }
+
+  function downloadCardImage() {
+    const srcCard = document.getElementById('profileCardTarget');
+    
+    const renderCanvas = document.createElement('div');
+    renderCanvas.style.position = 'absolute';
+    renderCanvas.style.left = '-9999px';
+    renderCanvas.style.top = '-9999px';
+    renderCanvas.style.width = '800px';
+    renderCanvas.style.background = '#ffffff';
+    renderCanvas.style.border = '1px solid #e8d5d5';
+    renderCanvas.style.borderRadius = '16px';
+    renderCanvas.style.padding = '32px';
+    renderCanvas.style.fontFamily = 'var(--font-sans)';
+    renderCanvas.style.boxSizing = 'border-box';
+
+    const topHtml = srcCard.querySelector('.card-top').outerHTML;
+    const greetHtml = srcCard.querySelector('.card-greeting-quote').outerHTML;
+
+    const infoListHtml = srcCard.querySelector('.card-info-list').outerHTML;
+    const keywordsHtml = srcCard.querySelector('.card-keywords').outerHTML;
+    
+    const sections = srcCard.querySelectorAll('.card-section-box');
+    const selfIntroHtml = sections[0] ? sections[0].outerHTML : '';
+    const targetIntroHtml = sections[1] ? sections[1].outerHTML : '';
+    
+    const footerHtml = srcCard.querySelector('.card-footer').outerHTML;
+
+    renderCanvas.innerHTML = `
+      ${topHtml}
+      ${greetHtml}
+      <div style="display: grid; grid-template-columns: 1fr 1.05fr; gap: 20px; align-items: start; margin-bottom: 16px;">
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          ${infoListHtml}
+          ${keywordsHtml}
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          ${selfIntroHtml}
+          ${targetIntroHtml}
+        </div>
+      </div>
+      ${footerHtml}
+    `;
+
+    document.body.appendChild(renderCanvas);
+
+    html2canvas(renderCanvas, { scale: 2, width: 800 }).then(canvas => {
+      const link = document.createElement('a');
+      link.download = `To_her_Landscape_Profile_${Date.now()}.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+      
+      document.body.removeChild(renderCanvas);
+    });
+  }
+
+  window.onload = function() {
+    toggleCategoryFields();
+    updateOrientationText(document.getElementById('orientationRange').value);
+    updateAgeText(document.getElementById('ageRange').value);
+    updateHeightText(document.getElementById('heightRange').value);
+    updateBodyText(document.getElementById('bodyRange').value);
+    updateHairText(document.getElementById('hairRange').value);
+    updateOutingText(document.getElementById('outingRange').value);
+    updateRegionText(document.getElementById('regionRange').value);
+  };
+</script>
+
+</body>
+</html>
